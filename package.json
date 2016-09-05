@@ -13,7 +13,9 @@
   "license": "ISC",
   "dependencies": {
     "react": "^15.2.1",
+    "react-codemirror": "^0.2.6",
     "react-dom": "^15.2.1",
+    "react-markdown": "^2.4.2",
     "redux": "^3.5.2"
   },
   "devDependencies": {
@@ -40,6 +42,8 @@
     "firebase": "^3.2.1",
     "isomorphic-fetch": "^2.2.1",
     "node-sass": "^3.8.0",
+    "highlight.js": "^9.6.0",
+    "json-loader": "^0.5.4",
     "react-router": "^2.5.2",
     "react-router-redux": "^4.0.5",
     "react-tools": "^0.10.0",

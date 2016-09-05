@@ -1,4 +1,4 @@
-import { REQUEST_POSTS, RECEIVE_POSTS } from '../actions/posts'
+import { REQUEST_POSTS, RECEIVE_POSTS, CREATE_POST } from '../actions/posts'
 
 const initialState = {
     items: [],

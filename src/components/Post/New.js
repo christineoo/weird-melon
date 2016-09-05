@@ -1,63 +1,103 @@
 import React, { Component, PropTypes } from 'react';
-import Rebase from 're-base';
 import LocalStorageUtils from '../../utils/LocalStorageUtils';
-import Firebase from 'firebase';
-
-const base = Rebase.createClass('https://weird-melon.firebaseio.com/');
+import ReactMarkdown from 'react-markdown';
+import Editor from './Editor';
+import CodeBlock from './CodeBlock';
+import { createPost } from '../../actions/posts'
+import { connect } from 'react-redux';
 
 class NewPost extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            posts: []
+            title: '',
+            body: '',
+            postTimestamp: '',
+            code:  ''
         }
     }
     componentDidMount() {
-        // let user = JSON.parse(LocalStorageUtils.get('user'));
-        // this.ref = base.bindToState('posts', {
-        //     context: this,
-        //     asArray: true,
-        //     state: 'posts'
-        // });
-        // Firebase.database().ref('/posts').push({
-        //     user_id: user.uid,
-        //     title: 'Title A',
-        //     body: 'post body',
-        //     postTimestamp: Date.now()
-        // })
-        // this.setState({
-        //     posts: Firebase.database().ref('/posts')
-        // })
-        // let posts = [];
-        // let ref = Firebase.database().ref('posts').once('value').then((snapshot) => {
-        //     Object.keys(snapshot.val()).forEach ((key, value) => {
-        //         let postsTemp = snapshot.val();
-        //         posts.push(postsTemp[key])
-        //     })
-        //     this.setState({
-        //         posts: posts
-        //     })
-        // });
-
     }
 
     componentWillUnmount() {
-        // base.removeBinding(this.ref);
     }
 
+    handleSubmit = () => {
+        let title = this.title.value;
+        let user = JSON.parse(LocalStorageUtils.get('user'));
+
+        let newPost = Object.assign({}, {
+            user_id: user.uid,
+            title: title,
+            body: this.state.code,
+            postTimestamp: Date.now()
+        });
+        // let body = this.state.code;
+        if (title && this.state.code) {
+            const { dispatch } = this.props;
+            dispatch(createPost(newPost)).then((res) => {
+              this.context.router.push(`/posts`)
+              console.log('create new: ', res)
+            }).catch((e) => {
+              console.log('create new error: ', e)
+            });
+        }
+        else {
+            console.log("title and body cannot be empty")
+        }
+    };
+
+    setRef(ref, item){
+        if(item == 'title') {
+            this.title = ref;
+        }
+        else if(item == 'body'){
+            this.body = ref;
+        }
+        else if(item == 'markdownbody'){
+            this.markdownbody = ref;
+        }
+    }
+
+    onMarkdownChange = (md) => {
+        this.setState({
+            code: md
+        });
+    };
+
     render() {
-        console.log('this.state.posts: ', this.state.posts)
+        let codeBlock = Object.assign({}, {
+                            CodeBlock: CodeBlock
+                        });
+
         return (
-            <div style={{marginTop: '100px'}}>
-                <h1>New post page</h1>
-                <ul>
-                    {this.state.posts.map((post, index) => (
-                        <li className="list-group-item" key={index}>{post.title}</li>
-                    ))}
-                </ul>
+            <div style={{padding: '20px'}}>
+                <div style={{marginTop: '30px'}}>
+                    <h1 style={{display: 'inline'}}>New post page</h1>
+                    <button onClick={this.handleSubmit} style={{float: 'right'}}>create new post</button>
+                </div>
+                <div>
+                    <input type="text" placeholder="title" ref={(ref) => this.setRef(ref, 'title')} />
+                </div>
+                <div>
+                    <Editor value = {this.state.code} onChange = {this.onMarkdownChange} />
+                    <ReactMarkdown
+                        className="markdown-preview"
+                        source={this.state.code}
+                        renderers={codeBlock}
+                        skipHtml = {this.state.htmlMode === 'skip'}
+                        escapeHtml = {this.state.htmlMode === 'escape'}
+                    />
+                </div>
             </div>
         )
     }
 }
 
+NewPost.contextTypes = {
+  router: React.PropTypes.object.isRequired
+};
+
+
 export default NewPost;
+export default connect()(NewPost);

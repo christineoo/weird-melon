@@ -1,4 +1,34 @@
 
-h1 {
-    color: red;
+.CodeMirror {
+    height: 100% !important;
+}
+
+blockquote {
+    color: #666;
+    margin: 0;
+    padding-left: 3em;
+    border-left: 0.5em #eee solid;
+}
+.ReactCodeMirror {
+    position: fixed;
+    top: 190px;
+    left: 0;
+    bottom: 0;
+    width: 50%;
+    overflow: auto;
+}
+
+.markdown-preview {
+    position: fixed;
+    top: 190px;
+    right: 0;
+    left: 50%;
+    bottom: 0;
+    overflow: auto;
+    padding: 10px;
+    padding-left: 20px;
+    color: #444;
+    font-family: Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif;
+    font-size: 16px;
+    line-height: 1.5em;
 }
