@@ -1,9 +1,11 @@
 import React, { Component, PropTypes } from 'react';
-import Firebase from 'firebase';
 import ReactMarkdown from 'react-markdown';
 import CodeBlock from './CodeBlock';
 import Editor from './Editor';
-import { updatePost } from '../../actions/posts'
+import { fetchPosts } from '../../actions/posts';
+import { navigateTo } from '../../actions/navigator';
+
+import { updatePost } from '../../actions/posts';
 import { connect } from 'react-redux';
 
 class Edit extends Component {
@@ -16,22 +18,17 @@ class Edit extends Component {
         this.state.post.body = '';
     }
 
-    componentDidMount() {
-        let key = this.props.location.pathname.split('/')[2];
-        let ref = Firebase.database().ref(`posts/${key}`);
-        ref.once('value', (snapshot) => {
-            if(snapshot.val() !== null) {
-                this.setState({
-                  post: snapshot.val()
-                })
-            }
-            else {
-              console.log('snapshot value is null')
-            }
-        }, (error) => {
-          console.log(error);
-        });
-        console.log('here: ', this.state.post)
+    componentWillMount() {
+        const { dispatch } = this.props;
+        dispatch(fetchPosts())
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if(this.props.posts !== nextProps.posts) {
+            this.setState({
+                post: nextProps.posts.postsByKey[nextProps.path[1]]
+            });
+        }
     }
 
     onMarkdownChange = (md) => {
@@ -51,7 +48,7 @@ class Edit extends Component {
     };
 
     handleSubmit = () => {
-        let key = this.props.location.pathname.split('/')[2];
+        let key = this.props.path[1];
         let post = this.state.post;
         post.postTimestamp = Date.now();
         this.setState({
@@ -59,10 +56,11 @@ class Edit extends Component {
         });
         const { dispatch } = this.props;
         dispatch(updatePost(key, this.state.post)).then((res) => {
-          this.context.router.push(`/posts`);
           console.log('updatePost success: ', res)
+          let newRoute = { path: ['posts'] }
+          dispatch(navigateTo(newRoute));
         }).catch((e) => {
-          console.log('updatePost error: ', e)
+            console.log('updatePost error: ', e)
         });
     };
 
@@ -108,5 +106,15 @@ Edit.contextTypes = {
   router: React.PropTypes.object.isRequired
 };
 
+function mapStateToProps(state) {
+    const { navigator } = state;
+    const { path } = navigator.route;
+    const { posts } = state;
+
+    return {
+        posts, path
+    };
+}
+
 export default Edit;
-export default connect()(Edit);
+export default connect(mapStateToProps)(Edit);

@@ -4,6 +4,7 @@ import { fetchPosts } from '../../actions/posts'
 import ReactMarkdown from 'react-markdown';
 import CodeBlock from './CodeBlock';
 import LocalStorageUtils from '../../utils/LocalStorageUtils';
+import Link from '../Link';
 
 class Post extends Component {
     constructor(props) {
@@ -30,11 +31,10 @@ class Post extends Component {
         }
     }
 
-    editPost = (key) => {
-        this.context.router.push(`/edit/${key}`)
-    }
-
     renderPost = () => {
+
+        const { dispatch } = this.props;
+
         let postEntries = [];
         let codeBlock = Object.assign({}, {
                             CodeBlock: CodeBlock
@@ -46,11 +46,19 @@ class Post extends Component {
                 let date = new Date(post.postTimestamp);
                 if(user.uid == post.user_id) {
                     postEntries.push(
-                        <button onClick={() => this.editPost(post.key)} key={`btn - ${index}`} style={{float: 'right'}}>Edit</button>
+                        <Link
+                            key={`edit-btn-${post.key}`}
+                            className="edit-button"
+                            dispatch={dispatch}
+                            route={{ path: ['edit',  post.key] }}
+                            title={`Edit`}
+                        >
+                            Edit
+                        </Link>
                     )
                 }
-                postEntries.push(<li className="list-group-item" key={`${post.title} - ${index}`}>{post.title}</li>)
-                postEntries.push(<li className="list-group-item" key={`${post.body} - ${index}`}>
+                postEntries.push(<li className="list-group-item" key={`${post.title} - ${post.key}`}>{post.title}</li>)
+                postEntries.push(<li className="list-group-item" key={`${post.body} - ${post.key}`}>
                 <ReactMarkdown
                     source={post.body}
                     renderers={codeBlock}
@@ -58,12 +66,12 @@ class Post extends Component {
                     escapeHtml = {this.state.htmlMode === 'escape'}
                 />
                 </li>);
-                postEntries.push(<li className="list-group-item" key={`${post.postTimestamp} - ${index}`}>{date.toDateString()}</li>)
-                postEntries.push(<li className="list-group-item" key={`${post.uid} - ${index}`}>{post.user_id}</li>)
+                postEntries.push(<li className="list-group-item" key={`${post.postTimestamp} - ${post.key}`}>{date.toDateString()}</li>)
+                postEntries.push(<li className="list-group-item" key={`${post.uid} - ${post.key}`}>{post.user_id}</li>)
 
-                // hide horizonral line if it is the last entry
+                // hide horizontal line if it is the last entry
                 if(index !== (this.state.posts.items.length - 1)) {
-                    postEntries.push(<hr key={`hr - ${index}`}/>)
+                    postEntries.push(<hr key={`hr - ${post.key}`}/>)
                 }
 
             });

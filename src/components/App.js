@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router'
-// import { initNavigator } from '../actions/navigator';
+import { initNavigator } from '../actions/navigator';
 import { initAuth } from '../actions/auth';
 import { connect } from 'react-redux';
 import HeaderContainer from '../containers/HeaderContainer';
 import Post from '../components/Post/Post';
+import Edit from '../components/Post/Edit';
+import New from '../components/Post/New';
 
 
 class App extends React.Component {
@@ -12,13 +14,32 @@ class App extends React.Component {
     componentDidMount() {
         const { dispatch } = this.props;
         dispatch(initAuth());
+        dispatch(initNavigator());
     }
+
+    renderContent() {
+        const { path } = this.props;
+        switch (path[0]) {
+            case 'posts':
+                return <Post />;
+
+            case 'edit':
+                return <Edit />;
+
+            case 'new_post':
+                return <New />;
+
+            default:
+                return null;
+        }
+    }
+
     render() {
-        let renderContent = this.props.children ? this.props.children : <Post />;
+        // let renderContent = this.props.children ? this.props.children : <Post />;
         return (
             <section>
                 <HeaderContainer />
-                {renderContent}
+                {this.renderContent()}
             </section>
         );
     }

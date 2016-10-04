@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-import { Link, IndexLink } from 'react-router';
+// import { Link, IndexLink } from 'react-router';
+import Link from '../Link';
 import { loginUser, logoutUser } from '../../actions/auth';
 import Toolbar from './Toolbar';
 import Popover from '../Modal/Popover';
@@ -39,7 +40,15 @@ class Header extends Component {
                     </div>
                     <div className="nav-user-popover popover-content">
                         <ul className="nav-user-popover-list">
-                            <Link to={'/new_post'}>New Post</Link>
+                            <Link
+                                key={`new-post`}
+                                className="edit-button"
+                                dispatch={dispatch}
+                                route={{ path: ['new_post'] }}
+                                title={`New Post`}
+                            >
+                                New Post
+                            </Link>
                             <li className="nav-user-popover-item">
                                 <p>{auth.user.displayName}</p>
                                 <a href="#" onClick={this.logout}>Log Out</a>
