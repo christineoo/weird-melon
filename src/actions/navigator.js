@@ -1,6 +1,14 @@
 import { constructUrl, parseUrl } from '../utils/RouteUtils';
 
 export const CHANGE_PATH = 'CHANGE_PATH';
+
+export function changePath(route) {
+    return {
+        type: CHANGE_PATH,
+        route
+    };
+}
+
 export function initNavigator() {
     return dispatch => {
         window.onpopstate = e => {
@@ -10,6 +18,16 @@ export function initNavigator() {
         if (window.location.hash !== '') {
             dispatch(navigateTo(parseUrl(window.location.hash)));
         }
+    };
+}
+
+export function navigateBack(e) {
+    return dispatch => {
+        if (e.state) {
+            return dispatch(navigateTo(e.state.route, false));
+        }
+
+        return null;
     };
 }
 

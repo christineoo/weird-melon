@@ -1,5 +1,7 @@
 import { CHANGE_PATH } from '../actions/navigator';
-const initialRoute = { path: ['posts'], query: { q: 'technology' }};
+const initialRoute = { path: ['posts']};
+// const initialRoute = { path: ['posts'], query: { q: 'technology' }};
+
 const initialState = { route: initialRoute };
 
 export default function navigator(state = initialState, action) {
