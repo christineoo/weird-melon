@@ -56,8 +56,8 @@ class Edit extends Component {
         });
         const { dispatch } = this.props;
         dispatch(updatePost(key, this.state.post)).then((res) => {
-          console.log('updatePost success: ', res)
-          let newRoute = { path: ['posts'] }
+          console.log('updatePost success: ', res);
+          let newRoute = { path: ['posts'] };
           dispatch(navigateTo(newRoute));
         }).catch((e) => {
             console.log('updatePost error: ', e)
