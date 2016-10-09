@@ -31,6 +31,8 @@ render(
                 <Route path="posts" component={Post} />
                 <Route path="new_post" component={NewPost} />
                 <Route path="edit/:id" component={EditPost} />
+                <Route path="view/:id" component={ViewPost} />
+
             </Route>
         </Router>
     </Provider>,

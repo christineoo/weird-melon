@@ -3,11 +3,7 @@ import ReactMarkdown from 'react-markdown';
 import CodeBlock from './CodeBlock';
 import Editor from './Editor';
 import { fetchPosts } from '../../actions/posts';
-// import { navigateTo } from '../../actions/navigator';
-import { push, routerActions } from 'react-router-redux'
-// import { browserHistory } from 'react-router'
-
-import { bindActionCreators } from 'redux'
+import { hashHistory } from 'react-router'
 import { updatePost } from '../../actions/posts';
 import { connect } from 'react-redux';
 
@@ -29,7 +25,7 @@ class Edit extends Component {
     componentWillReceiveProps(nextProps) {
         if(this.props.posts !== nextProps.posts) {
             this.setState({
-                post: nextProps.posts.postsByKey[nextProps.path[1]]
+                post: nextProps.posts.postsByKey[nextProps.routeParams.id]
             });
         }
     }
@@ -63,8 +59,7 @@ class Edit extends Component {
           // let newRoute = { path: ['posts'] };
           // dispatch(navigateTo(newRoute));
           //   dispatch(push('/#/posts'));
-            store.dispatch(push('/#/posts'));
-            debugger
+            hashHistory.push('/posts');
         }).catch((e) => {
             console.log('updatePost error: ', e)
         });
