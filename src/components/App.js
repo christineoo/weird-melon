@@ -1,10 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router'
 import { initNavigator } from '../actions/navigator';
 import { initAuth } from '../actions/auth';
 import { connect } from 'react-redux';
 import HeaderContainer from '../containers/HeaderContainer';
 import Post from '../components/Post/Post';
+import View from '../components/Post/View';
 import Edit from '../components/Post/Edit';
 import New from '../components/Post/New';
 
@@ -23,6 +23,9 @@ class App extends React.Component {
             case 'posts':
                 return <Post />;
 
+            case 'view':
+                return <View />;
+
             case 'edit':
                 return <Edit />;
 
@@ -36,10 +39,12 @@ class App extends React.Component {
 
     render() {
         // let renderContent = this.props.children ? this.props.children : <Post />;
+        let renderContent = this.props.children;
+
         return (
             <section>
                 <HeaderContainer />
-                {this.renderContent()}
+                {renderContent}
             </section>
         );
     }

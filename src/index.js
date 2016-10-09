@@ -8,6 +8,7 @@ import { Router, IndexRoute, Route, hashHistory } from 'react-router';
 import App from './components/App';
 import Home from './components/Home';
 import NewPost from './components/Post/New';
+import ViewPost from './components/Post/View';
 import EditPost from './components/Post/Edit';
 import Post from './components/Post/Post';
 

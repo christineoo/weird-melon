@@ -3,8 +3,11 @@ import ReactMarkdown from 'react-markdown';
 import CodeBlock from './CodeBlock';
 import Editor from './Editor';
 import { fetchPosts } from '../../actions/posts';
-import { navigateTo } from '../../actions/navigator';
+// import { navigateTo } from '../../actions/navigator';
+import { push, routerActions } from 'react-router-redux'
+// import { browserHistory } from 'react-router'
 
+import { bindActionCreators } from 'redux'
 import { updatePost } from '../../actions/posts';
 import { connect } from 'react-redux';
 
@@ -57,8 +60,11 @@ class Edit extends Component {
         const { dispatch } = this.props;
         dispatch(updatePost(key, this.state.post)).then((res) => {
           console.log('updatePost success: ', res);
-          let newRoute = { path: ['posts'] };
-          dispatch(navigateTo(newRoute));
+          // let newRoute = { path: ['posts'] };
+          // dispatch(navigateTo(newRoute));
+          //   dispatch(push('/#/posts'));
+            store.dispatch(push('/#/posts'));
+            debugger
         }).catch((e) => {
             console.log('updatePost error: ', e)
         });
@@ -101,10 +107,6 @@ class Edit extends Component {
         }
     }
 }
-
-Edit.contextTypes = {
-  router: React.PropTypes.object.isRequired
-};
 
 function mapStateToProps(state) {
     const { navigator } = state;

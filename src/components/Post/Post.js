@@ -4,7 +4,8 @@ import { fetchPosts } from '../../actions/posts'
 import ReactMarkdown from 'react-markdown';
 import CodeBlock from './CodeBlock';
 import LocalStorageUtils from '../../utils/LocalStorageUtils';
-import Link from '../Link';
+import { Link } from 'react-router'
+
 
 class Post extends Component {
     constructor(props) {
@@ -46,18 +47,13 @@ class Post extends Component {
                 let date = new Date(post.postTimestamp);
                 if(user.uid == post.user_id) {
                     postEntries.push(
-                        <Link
-                            key={`edit-btn-${post.key}`}
-                            className="edit-button"
-                            dispatch={dispatch}
-                            route={{ path: ['edit',  post.key] }}
-                            title={`Edit`}
-                        >
-                            Edit
-                        </Link>
+                        <Link className='edit-button' to={`/edit/${post.key}`}>Edit</Link>
                     )
                 }
-                postEntries.push(<li className="list-group-item" key={`${post.title} - ${post.key}`}>{post.title}</li>)
+                postEntries.push(<li className="list-group-item" key={`${post.title} - ${post.key}`}>
+                    <Link className='view-button' to={`/view/${post.key}`}>{post.title}</Link>
+
+                    </li>);
                 postEntries.push(<li className="list-group-item" key={`${post.body} - ${post.key}`}>
                 <ReactMarkdown
                     source={post.body}
@@ -101,7 +97,4 @@ function mapStateToProps(state) {
   };
 }
 
-Post.contextTypes = {
-  router: React.PropTypes.object.isRequired
-}
 export default connect(mapStateToProps)(Post);
