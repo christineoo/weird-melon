@@ -3,14 +3,8 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import configureStore from './store/configureStore';
 import { syncHistoryWithStore } from 'react-router-redux';
-import AppContainer from './AppContainer';
-import { Router, IndexRoute, Route, hashHistory } from 'react-router';
-import App from './components/App';
-import Home from './components/Home';
-import NewPost from './components/Post/New';
-import ViewPost from './components/Post/View';
-import EditPost from './components/Post/Edit';
-import Post from './components/Post/Post';
+import { hashHistory } from 'react-router';
+import Root from './containers/Root'
 
 import './styles/simpleGrid.css';
 import './styles/styles.scss';
@@ -24,17 +18,6 @@ const store = configureStore();
 const history = syncHistoryWithStore(hashHistory, store);
 
 render(
-    <Provider store={store}>
-        <Router history={history}>
-            <Route path="/" component={App}>
-                <Route path="home" component={Home} />
-                <Route path="posts" component={Post} />
-                <Route path="new_post" component={NewPost} />
-                <Route path="edit/:id" component={EditPost} />
-                <Route path="view/:id" component={ViewPost} />
-
-            </Route>
-        </Router>
-    </Provider>,
+    <Root store={store} history={history} />,
     document.getElementById('AppContainer')
 );

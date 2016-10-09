@@ -3,26 +3,28 @@ import { persistState } from 'redux-devtools';
 import rootReducer from '../reducers';
 import DevTools from '../utils/devTools';
 import createLogger from 'redux-logger'
-import thunkMiddleware from 'redux-thunk'
+// import thunkMiddleware from 'redux-thunk'
+import thunk from 'redux-thunk'
 
-const enhancer = compose(
-  applyMiddleware(thunkMiddleware, createLogger()),
-  DevTools.instrument(),
-  persistState(
-    window.location.href.match(
-      /[?&]debug_session=([^&]+)\b/
-    )
+const configureStore = preloadedState => {
+  const store = createStore(
+      rootReducer,
+      preloadedState,
+      compose(
+          applyMiddleware(thunk, createLogger()),
+          DevTools.instrument()
+      )
   )
-);
-
-export default function configureStore(initialState) {
-  const store = createStore(rootReducer, initialState, enhancer);
 
   if (module.hot) {
-    module.hot.accept('../reducers', () =>
-      store.replaceReducer(require('../reducers').default)
-    );
+    // Enable Webpack hot module replacement for reducers
+    module.hot.accept('../reducers', () => {
+      const nextRootReducer = require('../reducers').default
+      store.replaceReducer(nextRootReducer)
+    })
   }
 
-  return store;
+  return store
 }
+
+export default configureStore
