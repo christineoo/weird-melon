@@ -57,6 +57,5 @@ function mapStateToProps(state) {
     };
 }
 
-export default View;
 export default connect(mapStateToProps)(View);
 

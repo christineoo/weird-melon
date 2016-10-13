@@ -101,6 +101,4 @@ NewPost.contextTypes = {
   router: React.PropTypes.object.isRequired
 };
 
-
-export default NewPost;
 export default connect()(NewPost);

@@ -113,5 +113,4 @@ function mapStateToProps(state) {
     };
 }
 
-export default Edit;
 export default connect(mapStateToProps)(Edit);

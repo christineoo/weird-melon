@@ -87,8 +87,6 @@ class Post extends Component {
     }
 }
 
-export default Post
-
 function mapStateToProps(state) {
   const { posts } = state;
 

@@ -50,8 +50,6 @@ class App extends React.Component {
     }
 }
 
-export default App;
-
 function mapStateToProps(state) {
   const { environment, navigator } = state;
   const { path } = navigator.route;
