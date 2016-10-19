@@ -20,7 +20,8 @@ class Editor extends Component{
             mode: 'markdown',
             readOnly: false,
             theme: 'material',
-            lineNumbers: true
+            lineNumbers: true,
+            lineWrapping: true
         };
         return(
             <div className="editor-pane">
