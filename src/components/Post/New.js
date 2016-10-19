@@ -5,6 +5,7 @@ import Editor from './Editor';
 import CodeBlock from './CodeBlock';
 import { createPost } from '../../actions/posts'
 import { navigateTo } from '../../actions/navigator';
+import { hashHistory } from 'react-router'
 
 import { connect } from 'react-redux';
 
@@ -38,8 +39,9 @@ class NewPost extends Component {
         if (title && this.state.code) {
             const { dispatch } = this.props;
             dispatch(createPost(newPost)).then((res) => {
-                let newRoute = { path: ['posts'] };
-                dispatch(navigateTo(newRoute));
+                hashHistory.push('/posts');
+                // let newRoute = { path: ['posts'] };
+                // dispatch(navigateTo(newRoute));
               console.log('create new: ', res)
             }).catch((e) => {
               console.log('create new error: ', e)
