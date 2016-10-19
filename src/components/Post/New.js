@@ -74,15 +74,41 @@ class NewPost extends Component {
         let codeBlock = Object.assign({}, {
                             CodeBlock: CodeBlock
                         });
+        const labelStyle = {
+            fontSize: '11px',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            textTransform: 'uppercase',
+            fontWeight: '300',
+            margin: '0px',
+            borderRight: '1px solid #eee',
+            width: '100%',
+            height: '100%'
+        };
+
+        const createBtnStyle = {
+            height: '30px',
+            backgroundColor: '#adadad',
+            border: '0px',
+            color: '#ffffff',
+            alignSelf: 'center',
+            textTransform: 'uppercase',
+            padding: '10px 20px'
+        };
 
         return (
-            <div style={{padding: '20px'}}>
-                <div style={{marginTop: '30px'}}>
-                    <h1 style={{display: 'inline'}}>New post page</h1>
-                    <button onClick={this.handleSubmit} style={{float: 'right'}}>create new post</button>
+            <div>
+                <div style={{marginTop: '50px', display: 'flex', justifyContent: 'space-between', padding: '0 20px 15px 20px'}}>
+                    <label for="post-title">
+                        <span style={{ fontSize: '13px', display: 'block', color: '#adadad', fontWeight: '100' }}>Post Title</span>
+                        <input type="text" placeholder="New Post Title" ref={(ref) => this.setRef(ref, 'title')} className="post-title"/>
+                    </label>
+                    <button onClick={this.handleSubmit} style={createBtnStyle}>publish</button>
                 </div>
-                <div>
-                    <input type="text" placeholder="title" ref={(ref) => this.setRef(ref, 'title')} />
+                <div style={{ height: '41px', color: '#adadad', display: 'flex', justifyContent: 'space-around', alignItems: 'center', border: '1px solid #eee' }}>
+                    <h1 style={labelStyle}>Markdown</h1>
+                    <h1 style={labelStyle}>Preview</h1>
                 </div>
                 <div>
                     <Editor value = {this.state.code} onChange = {this.onMarkdownChange} />

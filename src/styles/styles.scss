@@ -11,16 +11,22 @@ blockquote {
 }
 .ReactCodeMirror {
     position: fixed;
-    top: 190px;
+    top: 199px;
     left: 0;
     bottom: 0;
     width: 50%;
     overflow: auto;
 }
 
+.post-view-container {
+    margin-top: 80px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .markdown-preview {
     position: fixed;
-    top: 190px;
+    top: 199px;
     right: 0;
     left: 50%;
     bottom: 0;
@@ -36,4 +42,12 @@ blockquote {
 .edit-button {
     float: right;
     text-decoration: none;
+}
+
+.post-title {
+    font-size: 20px;
+    border-style: none;
+}
+input:focus.post-title {
+    outline: none !important;
 }

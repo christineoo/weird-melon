@@ -71,16 +71,44 @@ class Edit extends Component {
                         });
         let post = this.state.post;
 
+        const labelStyle = {
+            fontSize: '11px',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            textTransform: 'uppercase',
+            fontWeight: '300',
+            margin: '0px',
+            borderRight: '1px solid #eee',
+            width: '100%',
+            height: '100%'
+        };
+
+        const createBtnStyle = {
+            height: '30px',
+            backgroundColor: '#adadad',
+            border: '0px',
+            color: '#ffffff',
+            alignSelf: 'center',
+            textTransform: 'uppercase',
+            padding: '10px 20px'
+        };
+
         if(post){
             console.log('post: ' , post);
             return (
-                <div style={{padding: '20px'}}>
-                    <div style={{marginTop: '30px'}}>
-                        <h1 style={{display: 'inline'}}>Edit post page</h1>
-                        <button onClick={this.handleSubmit} style={{float: 'right'}}>UPDATE</button>
+                <div>
+                    <div style={{marginTop: '50px', display: 'flex', justifyContent: 'space-between', padding: '0 20px 15px 20px'}}>
+                        <label for="post-title">
+                            <span style={{ fontSize: '13px', display: 'block', color: '#adadad', fontWeight: '100' }}>Post Title</span>
+                            <input type="text" placeholder="title" value={this.state.post.title} onChange={this.updateTitle} className="post-title"/>
+
+                        </label>
+                        <button onClick={this.handleSubmit} style={createBtnStyle}>update</button>
                     </div>
-                    <div>
-                        <input type="text" placeholder="title" value={this.state.post.title} onChange={this.updateTitle} />
+                    <div style={{ height: '41px', color: '#adadad', display: 'flex', justifyContent: 'space-around', alignItems: 'center', border: '1px solid #eee' }}>
+                        <h1 style={labelStyle}>Markdown</h1>
+                        <h1 style={labelStyle}>Preview</h1>
                     </div>
                     <div>
                         <Editor value = {this.state.post.body} onChange = {this.onMarkdownChange} />
