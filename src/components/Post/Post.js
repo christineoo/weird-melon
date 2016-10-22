@@ -45,7 +45,7 @@ class Post extends Component {
         if (this.state.posts.items){
             this.state.posts.items.map((post, index) => {
                 let date = new Date(post.postTimestamp);
-                if(user.uid == post.user_id) {
+                if(user && user.uid == post.user_id) {
                     postEntries.push(
                         <Link className='edit-button' to={`/edit/${post.key}`}>Edit</Link>
                     )
