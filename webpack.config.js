@@ -21,9 +21,9 @@ module.exports = {
             __API_KEY__: `'${config.apiKey}'`,
             __AUTH_DOMAIN__: `'${config.authDomain}'`,
             __DATABASE_URL__: `'${config.databaseURL}'`,
-            __STORAGE_BUCKET__: `'${config.storageBucket}'`
-
-        }),
+            __STORAGE_BUCKET__: `'${config.storageBucket}'`,
+          'process.env.NODE_ENV': JSON.stringify('production')
+      }),
   ],
   module: {
     loaders: [
