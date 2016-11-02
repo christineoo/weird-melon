@@ -37,7 +37,7 @@ class Header extends Component {
                     </div>
                     <div className="nav-user-popover popover-content">
                         <ul className="nav-user-popover-list">
-                                <Link className='edit-button' to={'/new_post'}>New Post</Link>
+                            <Link className='button-new' to={'/new_post'}>New Post</Link>
                             <li className="nav-user-popover-item">
                                 <p>{auth.user.displayName}</p>
                                 <a href="#" onClick={this.logout}>Log Out</a>
@@ -59,8 +59,8 @@ class Header extends Component {
                     <div className="nav-user-popover popover-content">
                         <ul className="nav-user-popover-list">
                             <li className="nav-user-popover-item">
-                                <a href="#" className="button orange block" onClick={this.login}>
-                                    Sign into Github
+                                <a href="#" className="signin-button" onClick={this.login}>
+                                    Sign in using Github
                                 </a>
                             </li>
                         </ul>
@@ -75,7 +75,7 @@ class Header extends Component {
             <div className="navigation-header">
                 <div className="grid">
                     <div className="title">
-                        Weird Melons
+                        <Link to={'/posts'}>Weird Melon</Link>
                         <div className="user">
                             {this.renderNavUser()}
                         </div>

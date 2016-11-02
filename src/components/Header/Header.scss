@@ -6,9 +6,12 @@
 
 .title {
     margin: 12px 30px;
-    color: rgba(255,255,255, 0.5);
     letter-spacing: 2px;
     text-transform: uppercase;
+    a {
+        text-decoration: none;
+        color: #ffffff;
+    }
 }
 
 .user {
@@ -45,6 +48,9 @@
     top: 40px;
     right: 2px;
     width: 200px;
+    ul {
+        padding: 10px;
+    }
 }
 
 .nav-user-popover.popover-content:before {
@@ -71,6 +77,13 @@
     p {
         color: black;
     }
+    a {
+        text-decoration: none;
+        color: black;
+        &:hover {
+            color: #5aa768;
+        }
+    }
 }
 
 .popover-content {
@@ -78,7 +91,7 @@
     position: absolute;
     margin-top: 10px;
     border-radius: 1px;
-    border: 1px solid #999;
+    border: none;
     box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.20);
     background-color: #fff;
     z-index: 3;
@@ -90,4 +103,25 @@
     height: 29px;
     margin-left: 17px;
     border-radius: 100%;
+}
+
+.button-new{
+    height: 30px;
+    background-color: #66c577;
+    border: 0px;
+    color: #ffffff;
+    align-self: center;
+    text-transform: uppercase;
+    padding: 5px 20px;
+    //font-size: 15px;
+    text-decoration: none;
+    &:hover {
+        background-color: #5aa768;
+    }
+}
+
+.signin-button{
+    &:hover {
+        color: #5aa768;
+    }
 }
