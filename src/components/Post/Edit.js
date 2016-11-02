@@ -48,14 +48,13 @@ class Edit extends Component {
     };
 
     handleSubmit = () => {
-        let key = this.props.path[1];
         let post = this.state.post;
         post.postTimestamp = Date.now();
         this.setState({
             post: post
         });
         const { dispatch } = this.props;
-        dispatch(updatePost(key, this.state.post)).then((res) => {
+        dispatch(updatePost(post.key, this.state.post)).then((res) => {
           console.log('updatePost success: ', res);
           // let newRoute = { path: ['posts'] };
           // dispatch(navigateTo(newRoute));

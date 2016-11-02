@@ -88,16 +88,6 @@ class NewPost extends Component {
             height: '100%'
         };
 
-        const createBtnStyle = {
-            height: '30px',
-            backgroundColor: '#adadad',
-            border: '0px',
-            color: '#ffffff',
-            alignSelf: 'center',
-            textTransform: 'uppercase',
-            padding: '10px 20px'
-        };
-
         return (
             <div>
                 <div style={{marginTop: '50px', display: 'flex', justifyContent: 'space-between', padding: '0 20px 15px 20px'}}>
