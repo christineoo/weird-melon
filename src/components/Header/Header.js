@@ -1,12 +1,8 @@
 import React, { Component, PropTypes } from 'react';
-// import { Link, IndexLink } from 'react-router';
-// import Link from '../Link';
 import { loginUser, logoutUser } from '../../actions/auth';
 import Toolbar from './Toolbar';
 import Popover from '../Modal/Popover';
 import '../Modal/Popover.scss';
-import styles from './Header.scss';
-import classNames from 'classnames';
 import { Link } from 'react-router'
 
 const propTypes = {

@@ -17,26 +17,6 @@ class App extends React.Component {
         dispatch(initNavigator());
     }
 
-    renderContent() {
-        const { path } = this.props;
-        switch (path[0]) {
-            case 'posts':
-                return <Post />;
-
-            case 'view':
-                return <View />;
-
-            case 'edit':
-                return <Edit />;
-
-            case 'new_post':
-                return <New />;
-
-            default:
-                return null;
-        }
-    }
-
     render() {
         // let renderContent = this.props.children ? this.props.children : <Post />;
         let renderContent = this.props.children;
