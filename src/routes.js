@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router';
+import { IndexRedirect, Route } from 'react-router';
 
 import App from './components/App';
 import Home from './components/Home';
@@ -14,4 +14,5 @@ export default <Route path="/" component={App}>
         <Route path="new_post" component={NewPost} />
         <Route path="edit/:id" component={EditPost} />
         <Route path="view/:id" component={ViewPost} />
+        <IndexRedirect to="/posts" />
 </Route>
