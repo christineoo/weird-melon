@@ -1,0 +1,35 @@
+.card {
+  margin: 10px 0;
+  padding: 10px 20px;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.20);
+  max-height: 300px;
+  overflow: hidden;
+  .date-style {
+    font-size: 10px;
+  }
+  .view-button {
+    text-decoration: none;
+    letter-spacing: 2px;
+    color: #3a3f41;
+    &:hover {
+      color: #66c577;
+    }
+  }
+  .edit-button {
+    border-radius: 4px;
+    font-size: 12px;
+    float: right;
+    text-decoration: none;
+    border: none;
+    background-color: #66c577;
+    color: #ffffff;
+    padding: 5px 15px;
+    margin: 0px 15px;
+    font-weight: 500;
+    text-transform: uppercase;
+    &:hover {
+      //color: #5aa768;
+      background-color: #5aa768;
+    }
+  }
+}
