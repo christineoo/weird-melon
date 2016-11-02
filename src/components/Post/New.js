@@ -6,6 +6,7 @@ import CodeBlock from './CodeBlock';
 import { createPost } from '../../actions/posts'
 import { navigateTo } from '../../actions/navigator';
 import { hashHistory } from 'react-router'
+import Button from '../Button';
 
 import { connect } from 'react-redux';
 
@@ -104,7 +105,7 @@ class NewPost extends Component {
                         <span style={{ fontSize: '13px', display: 'block', color: '#adadad', fontWeight: '100' }}>Post Title</span>
                         <input type="text" placeholder="New Post Title" ref={(ref) => this.setRef(ref, 'title')} className="post-title"/>
                     </label>
-                    <button onClick={this.handleSubmit} style={createBtnStyle}>publish</button>
+                    <Button onClick={this.handleSubmit}>publish</Button>
                 </div>
                 <div style={{ height: '41px', color: '#adadad', display: 'flex', justifyContent: 'space-around', alignItems: 'center', border: '1px solid #eee' }}>
                     <h1 style={labelStyle}>Markdown</h1>

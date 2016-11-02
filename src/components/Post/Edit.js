@@ -6,6 +6,7 @@ import { fetchPosts } from '../../actions/posts';
 import { hashHistory } from 'react-router'
 import { updatePost } from '../../actions/posts';
 import { connect } from 'react-redux';
+import Button from '../Button';
 
 class Edit extends Component {
     constructor(props){
@@ -104,7 +105,7 @@ class Edit extends Component {
                             <input type="text" placeholder="title" value={this.state.post.title} onChange={this.updateTitle} className="post-title"/>
 
                         </label>
-                        <button onClick={this.handleSubmit} style={createBtnStyle}>update</button>
+                        <Button onClick={this.handleSubmit}>update</Button>
                     </div>
                     <div style={{ height: '41px', color: '#adadad', display: 'flex', justifyContent: 'space-around', alignItems: 'center', border: '1px solid #eee' }}>
                         <h1 style={labelStyle}>Markdown</h1>
