@@ -49,7 +49,7 @@ class NewPost extends Component {
             });
         }
         else {
-            console.log("title and body cannot be empty")
+            alert("title and body cannot be empty")
         }
     };
 
