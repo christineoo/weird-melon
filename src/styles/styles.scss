@@ -19,6 +19,7 @@ blockquote {
 }
 
 .post-view-container {
+    width: 800px;
     margin-top: 80px;
     margin-left: auto;
     margin-right: auto;
@@ -37,11 +38,6 @@ blockquote {
     font-family: Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif;
     font-size: 16px;
     line-height: 1.5em;
-}
-
-.edit-button {
-    float: right;
-    text-decoration: none;
 }
 
 .post-title {
