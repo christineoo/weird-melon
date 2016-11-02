@@ -31,10 +31,17 @@ class View extends Component {
         let codeBlock = Object.assign({}, {
             CodeBlock: CodeBlock
         });
-        console.log('this.props: ',  this.props)
+        let date = this.state.post.postTimestamp !== undefined ? new Date(this.state.post.postTimestamp).toDateString() : '';
+
+        const dateStyle = {
+            display: 'flex', justifyContent: 'flex-end', fontSize: '11px'
+        };
+
         return (
             <div className="post-view-container">
-                <div>Title: {this.state.post.title}</div>
+                <div>{this.state.post.title}</div>
+                <div style={dateStyle}>{date}</div>
+                <hr style={{border: '1px solid #e3e3e3'}}/>
                 <ReactMarkdown
                     source={this.state.post.body}
                     renderers={codeBlock}
