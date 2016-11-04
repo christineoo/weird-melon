@@ -46,6 +46,7 @@ class Post extends Component {
         if (this.state.posts.items){
             this.state.posts.items.map((post) => {
                 postEntries.push(<Card key={shortid.generate()} user={user} post={post} />);
+
             });
         }
         return postEntries;
