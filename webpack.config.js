@@ -15,7 +15,6 @@ module.exports = {
     publicPath: ''
   },
   plugins: [
-      new webpack.HotModuleReplacementPlugin(),
       new webpack.DefinePlugin({
             __API_KEY__: `'${config.apiKey}'`,
             __AUTH_DOMAIN__: `'${config.authDomain}'`,
@@ -23,13 +22,16 @@ module.exports = {
             __STORAGE_BUCKET__: `'${config.storageBucket}'`,
           'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
       }),
+      new ExtractTextPlugin('main.css')
   ],
+
   module: {
     loaders: [
       {
         test: /\.js$/,
-        loader: 'babel',
+        loaders: ['react-hot', 'babel'],
         include: path.join(__dirname, 'src'),
+        exclude: /node_modules/
       },
       {
         test: /\.html$/,
@@ -60,7 +62,6 @@ module.exports = {
 function getEntrySources(sources) {
     if (process.env.NODE_ENV !== 'production') {
         sources.push('webpack-dev-server/client?http://localhost:8080');
-        sources.push('webpack/hot/only-dev-server');
     }
     return sources;
 }
