@@ -91,7 +91,7 @@ class NewPost extends Component {
         return (
             <div>
                 <div style={{marginTop: '50px', display: 'flex', justifyContent: 'space-between', padding: '0 20px 15px 20px'}}>
-                    <label for="post-title">
+                    <label>
                         <span style={{ fontSize: '13px', display: 'block', color: '#adadad', fontWeight: '100' }}>Post Title</span>
                         <input type="text" placeholder="New Post Title" ref={(ref) => this.setRef(ref, 'title')} className="post-title"/>
                     </label>
