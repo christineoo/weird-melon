@@ -4,11 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_ENV=development babel-node server.js",
-    "build": "NODE_ENV=production webpack --config webpack.config.js --progress --colors",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "NODE_ENV='development' babel-node server.js",
+    "clean": "rimraf dist",
+    "build:webpack": "NODE_ENV=production webpack -p --config webpack.config.js --progress --colors",
+    "build": "npm run clean && npm run build:webpack",
     "lint": "eslint **/*.js",
-    "deploy": "npm run build && gh-pages -d dist"
+    "deploy": "npm run build && firebase deploy"
   },
   "author": "",
   "license": "ISC",
