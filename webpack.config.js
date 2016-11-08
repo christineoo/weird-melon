@@ -1,5 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 const config = require('./config');
 
 module.exports = {
@@ -39,13 +40,11 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loader: 'style!css'
-    },
+        loader: ExtractTextPlugin.extract('style', 'css!sass')
+      },
     {
         test: /\.scss$/,
-        loaders: [
-            'style', 'css?sourceMap', 'sass?sourceMap'
-        ]
+        loader: ExtractTextPlugin.extract('style', 'css!sass')
     },
     {
         test   : /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/,
