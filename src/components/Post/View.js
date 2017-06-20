@@ -31,24 +31,28 @@ class View extends Component {
         let codeBlock = Object.assign({}, {
             CodeBlock: CodeBlock
         });
-        let date = this.state.post.postTimestamp !== undefined ? new Date(this.state.post.postTimestamp).toDateString() : '';
+        let date = this.state.post && this.state.post.postTimestamp !== undefined ? new Date(this.state.post.postTimestamp).toDateString() : '';
 
         const dateStyle = {
             display: 'flex', justifyContent: 'flex-end', fontSize: '11px'
         };
-
-        return (
+        if (this.state.post) {
+          return (
             <div className="post-view-container">
                 <div>{this.state.post.title}</div>
                 <div style={dateStyle}>{date}</div>
                 <hr style={{border: '1px solid #e3e3e3'}}/>
                 <ReactMarkdown
-                    source={this.state.post.body}
-                    renderers={codeBlock}
-                    skipHtml = {this.state.htmlMode === 'skip'}
-                    escapeHtml = {this.state.htmlMode === 'escape'}
+                  source={this.state.post.body}
+                  renderers={codeBlock}
+                  skipHtml={this.state.htmlMode === 'skip'}
+                  escapeHtml={this.state.htmlMode === 'escape'}
                 />
             </div>
+          )
+        }
+        return (
+          <div></div>
         )
     }
 
