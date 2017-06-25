@@ -9,7 +9,6 @@ if (process.env.NODE_ENV !== 'production') {
   var webpackHotMiddleware = require('webpack-hot-middleware')
   var compiler = webpack(config)
 
-  console.log('lala: ', config)
   app.use(
     webpackDevMiddleware(compiler, {
       quite: true,
