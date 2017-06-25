@@ -5,7 +5,10 @@ const config = require('./config');
 
 module.exports = {
   devTools: 'source-map',
-
+  devServer: {
+    host: 'localhost',
+    port: 8080
+  },
   entry: getEntrySources([
     './src/index.js',
     './src/index.html'
@@ -16,6 +19,9 @@ module.exports = {
     publicPath: ''
   },
   plugins: [
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin(),
       new webpack.DefinePlugin({
             __API_KEY__: `'${config.apiKey}'`,
             __AUTH_DOMAIN__: `'${config.authDomain}'`,
@@ -60,7 +66,7 @@ module.exports = {
 
 function getEntrySources(sources) {
     if (process.env.NODE_ENV !== 'production') {
-        sources.push('webpack-dev-server/client?http://localhost:8080');
+        sources.push('webpack-hot-middleware/client');
     }
     return sources;
 }
