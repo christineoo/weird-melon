@@ -1,6 +1,10 @@
 var express = require('express')
 
 var app = express()
+var Dashboard = require('webpack-dashboard')
+var DashboardPlugin = require("webpack-dashboard/plugin")
+
+var dashboard = new Dashboard()
 
 if (process.env.NODE_ENV !== 'production') {
   var config = require('./webpack.config.js')
@@ -8,6 +12,8 @@ if (process.env.NODE_ENV !== 'production') {
   var webpackDevMiddleware = require('webpack-dev-middleware')
   var webpackHotMiddleware = require('webpack-hot-middleware')
   var compiler = webpack(config)
+
+  compiler.apply(new DashboardPlugin(dashboard.setData));
 
   app.use(
     webpackDevMiddleware(compiler, {
