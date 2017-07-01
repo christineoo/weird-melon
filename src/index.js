@@ -15,9 +15,8 @@ import 'codemirror/theme/material.css';
 import md from 'codemirror/mode/markdown/markdown';
 
 const store = configureStore();
-const history = syncHistoryWithStore(hashHistory, store);
 
 render(
-    <Root store={store} history={history} />,
+    <Root store={store} />,
     document.getElementById('AppContainer')
 );

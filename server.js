@@ -1,6 +1,8 @@
 var express = require('express')
-
+var path = require('path')
 var app = express()
+var port = process.env.PORT || 8080
+
 var Dashboard = require('webpack-dashboard')
 var DashboardPlugin = require("webpack-dashboard/plugin")
 
@@ -24,9 +26,12 @@ if (process.env.NODE_ENV !== 'production') {
   app.use(webpackHotMiddleware(compiler))
 }
 
-app.use(express.static('public'))
-
-var port = 8080
+app.use(express.static('dist'))
+// handle every other route with index.html, whic h will contain
+// a script tag to your application's JavaScript file(s).
+app.get('*', function (request, response){
+  response.sendFile(path.resolve(__dirname, 'dist', 'index.html'))
+})
 
 app.listen(port, function (error) {
   if(error) {
