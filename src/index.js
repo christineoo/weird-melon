@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import configureStore from './store';
 import { hashHistory } from 'react-router';
-import Root from './containers/Root'
+import Root from './containers/Root';
 
 import './styles/simpleGrid.css';
 import './styles/styles.scss';

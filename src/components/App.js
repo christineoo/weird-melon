@@ -11,23 +11,23 @@ import New from '../components/Post/New';
 
 class App extends React.Component {
 
-    componentDidMount() {
-        const { dispatch } = this.props;
-        dispatch(initAuth());
-        dispatch(initNavigator());
-    }
+  componentDidMount() {
+    const { dispatch } = this.props;
+    dispatch(initAuth());
+    dispatch(initNavigator());
+  }
 
-    render() {
+  render() {
         // let renderContent = this.props.children ? this.props.children : <Post />;
-        let renderContent = this.props.children;
+    const renderContent = this.props.children;
 
-        return (
-            <section>
-                <HeaderContainer />
-                {renderContent}
-            </section>
+    return (
+        <section>
+            <HeaderContainer />
+            {renderContent}
+        </section>
         );
-    }
+  }
 }
 
 function mapStateToProps(state) {
@@ -35,7 +35,7 @@ function mapStateToProps(state) {
   const { path } = navigator.route;
 
   return {
-    path,
+    path
   };
 }
 

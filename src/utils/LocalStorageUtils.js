@@ -26,12 +26,12 @@ const util = {
   },
 
 
-  remove(key){
-      if (isAvailable) {
-          return localStorage.removeItem(key);
-      }
-      return null;
-  },
+  remove(key) {
+    if (isAvailable) {
+      return localStorage.removeItem(key);
+    }
+    return null;
+  }
 };
 
 export default util;

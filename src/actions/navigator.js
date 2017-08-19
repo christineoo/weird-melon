@@ -3,32 +3,32 @@ import { constructUrl, parseUrl } from '../utils/RouteUtils';
 export const CHANGE_PATH = 'CHANGE_PATH';
 
 export function changePath(route) {
-    return {
-        type: CHANGE_PATH,
-        route
-    };
+  return {
+    type: CHANGE_PATH,
+    route
+  };
 }
 
 export function initNavigator() {
-    return dispatch => {
-        window.onpopstate = e => {
-            dispatch(navigateBack(e));
-        };
-
-        if (window.location.hash !== '') {
-            dispatch(navigateTo(parseUrl(window.location.hash)));
-        }
+  return (dispatch) => {
+    window.onpopstate = (e) => {
+      dispatch(navigateBack(e));
     };
+
+    if (window.location.hash !== '') {
+      dispatch(navigateTo(parseUrl(window.location.hash)));
+    }
+  };
 }
 
 export function navigateBack(e) {
-    return dispatch => {
-        if (e.state) {
-            return dispatch(navigateTo(e.state.route, false));
-        }
+  return (dispatch) => {
+    if (e.state) {
+      return dispatch(navigateTo(e.state.route, false));
+    }
 
-        return null;
-    };
+    return null;
+  };
 }
 
 export function navigateTo(route, shouldPushState = true) {

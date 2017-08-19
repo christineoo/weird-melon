@@ -1,34 +1,34 @@
-import React, {PropTypes} from 'react'
+import React, { PropTypes } from 'react';
 import ReactMarkdown from 'react-markdown';
 import CodeBlock from '../Post/CodeBlock';
-import { Link } from 'react-router'
+import { Link } from 'react-router';
 
-const Card = ({user, post}) => {
-    let codeBlock = Object.assign({}, {
-        CodeBlock: CodeBlock
-    });
+const Card = ({ user, post }) => {
+  const codeBlock = Object.assign({}, {
+    CodeBlock
+  });
 
-    let date = new Date(post.postTimestamp);
-    let editButton = (user && user.uid == post.user_id) ?
-        <Link className='edit-button' to={`/edit/${post.key}`}>Edit</Link>
+  const date = new Date(post.postTimestamp);
+  const editButton = (user && user.uid == post.user_id) ?
+      <Link className="edit-button" to={`/edit/${post.key}`}>Edit</Link>
         : '';
-    return (
-        <div className="card">
-            <Link className='view-button' to={`/view/${post.key}`}>{post.title}</Link>
-            {editButton}
-            <p className="date-style">{`Post on ${date.toDateString()}`}</p>
-            <ReactMarkdown
-                 source={post.body}
-                 renderers={codeBlock}
-                 skipHtml = {true}
-                 escapeHtml = {true}
-             />
-        </div>
-    )
+  return (
+      <div className="card">
+          <Link className="view-button" to={`/view/${post.key}`}>{post.title}</Link>
+          {editButton}
+          <p className="date-style">{`Post on ${date.toDateString()}`}</p>
+          <ReactMarkdown
+            source={post.body}
+            renderers={codeBlock}
+            skipHtml
+            escapeHtml
+          />
+      </div>
+    );
 };
 
 Card.propTypes = {
-    post: PropTypes.object.isRequired
+  post: PropTypes.object.isRequired
 };
 
 export default Card;

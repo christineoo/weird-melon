@@ -8,8 +8,10 @@
     "clean": "rm -rf dist",
     "build:webpack": "NODE_ENV=production webpack -p --config webpack.config.js --progress --colors",
     "build": "npm run clean && npm run build:webpack",
-    "lint": "eslint **/*.js",
+    "lint": "eslint --cache --ext .js --ext .jsx src",
+    "fixlint": "eslint --fix --ext .js --ext .jsx src",
     "deploy": "npm run build && firebase deploy"
+
   },
   "author": "",
   "license": "ISC",

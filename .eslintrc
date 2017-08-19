@@ -5,7 +5,7 @@
     "jsx-a11y"
   ],
   "rules": {
-      "indent": ["error", 4],
+      "indent": ["error", 2],
       "react/jsx-indent": ["error", 4],
       "react/jsx-first-prop-new-line": 0,
       "jsx-a11y/aria-role": 0,

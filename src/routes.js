@@ -9,10 +9,10 @@ import EditPost from './components/Post/Edit';
 import Post from './components/Post/Post';
 
 export default <Route path="/" component={App}>
-        <Route path="home" component={Home} />
-        <Route path="posts" component={Post} />
-        <Route path="new_post" component={NewPost} />
-        <Route path="edit/:id" component={EditPost} />
-        <Route path="view/:id" component={ViewPost} />
-        <IndexRedirect to="/posts" />
-</Route>
+    <Route path="home" component={Home} />
+    <Route path="posts" component={Post} />
+    <Route path="new_post" component={NewPost} />
+    <Route path="edit/:id" component={EditPost} />
+    <Route path="view/:id" component={ViewPost} />
+    <IndexRedirect to="/posts" />
+</Route>;

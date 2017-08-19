@@ -3,22 +3,22 @@ import { connect } from 'react-redux';
 import Header from '../components/Header';
 
 const propTypes = {
-  isMobile: PropTypes.bool,
+  isMobile: PropTypes.bool
 };
 
 class HeaderContainer extends Component {
-    render() {
-        console.log('HeaderContainer: ', this.props)
+  render() {
+    console.log('HeaderContainer: ', this.props);
 
-        return <Header {...this.props}/>;
-    }
+    return <Header {...this.props} />;
+  }
 }
 
 function mapStateToProps(state) {
   const { auth, entities, environment, navigator } = state;
 
   return {
-    auth,
+    auth
   };
 }
 
