@@ -9,26 +9,8 @@ export function changePath(route) {
   };
 }
 
-export function initNavigator() {
-  return (dispatch) => {
-    window.onpopstate = (e) => {
-      dispatch(navigateBack(e));
-    };
-
-    if (window.location.hash !== '') {
-      dispatch(navigateTo(parseUrl(window.location.hash)));
-    }
-  };
-}
-
-export function navigateBack(e) {
-  return (dispatch) => {
-    if (e.state) {
-      return dispatch(navigateTo(e.state.route, false));
-    }
-
-    return null;
-  };
+function pushState(route) {
+  history.pushState({ route }, '', `#/${constructUrl(route)}`);
 }
 
 export function navigateTo(route, shouldPushState = true) {
@@ -46,6 +28,25 @@ export function navigateTo(route, shouldPushState = true) {
   };
 }
 
-function pushState(route) {
-  history.pushState({ route }, '', `#/${constructUrl(route)}`);
+export function navigateBack(e) {
+  return (dispatch) => {
+    if (e.state) {
+      return dispatch(navigateTo(e.state.route, false));
+    }
+
+    return null;
+  };
 }
+
+export function initNavigator() {
+  return (dispatch) => {
+    window.onpopstate = (e) => {
+      dispatch(navigateBack(e));
+    };
+
+    if (window.location.hash !== '') {
+      dispatch(navigateTo(parseUrl(window.location.hash)));
+    }
+  };
+}
+
