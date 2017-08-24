@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import ReactMarkdown from 'react-markdown';
-import CodeBlock from '../Post/CodeBlock';
 import { Link } from 'react-router';
+import CodeBlock from '../Post/CodeBlock';
 
 const Card = ({ user, post }) => {
   const codeBlock = Object.assign({}, {
@@ -9,7 +9,7 @@ const Card = ({ user, post }) => {
   });
 
   const date = new Date(post.postTimestamp);
-  const editButton = (user && user.uid == post.user_id) ?
+  const editButton = (user && user.uid === post.user_id) ?
       <Link className="edit-button" to={`/edit/${post.key}`}>Edit</Link>
         : '';
   return (
@@ -28,7 +28,8 @@ const Card = ({ user, post }) => {
 };
 
 Card.propTypes = {
-  post: PropTypes.object.isRequired
+  post: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired
 };
 
 export default Card;

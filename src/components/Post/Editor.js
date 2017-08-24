@@ -2,14 +2,12 @@ import React, { Component, PropTypes } from 'react';
 import Codemirror from 'react-codemirror';
 
 const propTypes = {
-  onChange: React.PropTypes.func.isRequired,
-  value: React.PropTypes.string
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.string
 };
 const debounce = require('lodash.debounce');
+
 class Editor extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   onInputChange = (e) => {
     this.props.onChange(e);
@@ -25,7 +23,11 @@ class Editor extends Component {
     };
     return (
         <div className="editor-pane">
-            <Codemirror value={this.props.value} onChange={debounce(this.onInputChange, 500)} options={options} />
+            <Codemirror
+              value={this.props.value}
+              onChange={debounce(this.onInputChange, 500)}
+              options={options}
+            />
         </div>
         );
   }

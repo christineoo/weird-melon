@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
-import { CATEGORY } from '../../constants/CategoryConstants';
-import styles from './Toolbar.scss';
+import React, { Component, PropTypes } from 'react';
 import classNames from 'classnames';
-import Link from '../Link';
 import { connect } from 'react-redux';
+import Link from '../Link';
+import { CATEGORY } from '../../constants/CategoryConstants';
 
 class Toolbar extends Component {
   constructor(props) {
@@ -44,7 +43,7 @@ class Toolbar extends Component {
 }
 
 function mapStateToProps(state) {
-  const { environment, navigator } = state;
+  const { navigator } = state;
   const { path } = navigator.route;
 
   return {
@@ -52,5 +51,8 @@ function mapStateToProps(state) {
   };
 }
 
+Toolbar.propTypes = {
+  dispatch: PropTypes.func.isRequired
+};
 
 export default connect(mapStateToProps)(Toolbar);

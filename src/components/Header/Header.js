@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
+import { Link } from 'react-router';
 import { loginUser, logoutUser } from '../../actions/auth';
 import Toolbar from './Toolbar';
 import Popover from '../Modal/Popover';
 import '../Modal/Popover.scss';
-import { Link } from 'react-router';
 
 const propTypes = {
   dispatch: PropTypes.func.isRequired
@@ -26,7 +26,6 @@ class Header extends Component {
 
   renderNavUser() {
     const { auth } = this.props;
-    const { dispatch } = this.props;
     if (auth.user) {
       return (
           <Popover className="nav-user">
@@ -85,6 +84,10 @@ class Header extends Component {
         );
   }
 }
+
+Header.propTypes = {
+  auth: PropTypes.object.isRequired,
+};
 
 Header.propTypes = propTypes;
 export default Header;

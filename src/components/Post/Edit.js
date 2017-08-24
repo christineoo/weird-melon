@@ -1,12 +1,16 @@
 import React, { Component, PropTypes } from 'react';
 import ReactMarkdown from 'react-markdown';
+import { connect } from 'react-redux';
+import { hashHistory } from 'react-router';
 import CodeBlock from './CodeBlock';
 import Editor from './Editor';
-import { fetchPosts } from '../../actions/posts';
-import { hashHistory } from 'react-router';
-import { updatePost } from '../../actions/posts';
-import { connect } from 'react-redux';
+import { updatePost, fetchPosts } from '../../actions/posts';
 import Button from '../Button';
+
+const propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  posts: PropTypes.object.isRequired
+};
 
 class Edit extends Component {
   constructor(props) {
@@ -84,16 +88,6 @@ class Edit extends Component {
       height: '100%'
     };
 
-    const createBtnStyle = {
-      height: '30px',
-      backgroundColor: '#adadad',
-      border: '0px',
-      color: '#ffffff',
-      alignSelf: 'center',
-      textTransform: 'uppercase',
-      padding: '10px 20px'
-    };
-
     if (post) {
       console.log('post: ', post);
       return (
@@ -123,11 +117,9 @@ class Edit extends Component {
           </div>
             );
     }
-    else {
-      return (
-          <div>loading</div>
-            );
-    }
+    return (
+        <div>loading</div>
+    );
   }
 }
 
@@ -140,5 +132,7 @@ function mapStateToProps(state) {
     posts, path
   };
 }
+
+Edit.propTypes = propTypes;
 
 export default connect(mapStateToProps)(Edit);

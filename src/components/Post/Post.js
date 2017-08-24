@@ -1,12 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { fetchPosts } from '../../actions/posts';
-import ReactMarkdown from 'react-markdown';
-import CodeBlock from './CodeBlock';
-import LocalStorageUtils from '../../utils/LocalStorageUtils';
-import { Link } from 'react-router';
-import Card from '../Card';
 import shortid from 'shortid';
+import { fetchPosts } from '../../actions/posts';
+import LocalStorageUtils from '../../utils/LocalStorageUtils';
+import Card from '../Card';
 
 class Post extends Component {
   constructor(props) {

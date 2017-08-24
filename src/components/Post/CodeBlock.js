@@ -1,11 +1,9 @@
-
-
 import React, { Component, PropTypes } from 'react';
 import hljs from 'highlight.js';
 
 const propTypes = {
-  literal: React.PropTypes.string,
-  language: React.PropTypes.string
+  literal: PropTypes.string,
+  language: PropTypes.string
 };
 
 class CodeBlock extends Component {

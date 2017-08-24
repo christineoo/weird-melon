@@ -3,11 +3,6 @@ import { initNavigator } from '../actions/navigator';
 import { initAuth } from '../actions/auth';
 import { connect } from 'react-redux';
 import HeaderContainer from '../containers/HeaderContainer';
-import Post from '../components/Post/Post';
-import View from '../components/Post/View';
-import Edit from '../components/Post/Edit';
-import New from '../components/Post/New';
-
 
 class App extends React.Component {
 
@@ -31,7 +26,7 @@ class App extends React.Component {
 }
 
 function mapStateToProps(state) {
-  const { environment, navigator } = state;
+  const { navigator } = state;
   const { path } = navigator.route;
 
   return {

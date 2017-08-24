@@ -1,14 +1,12 @@
 import React, { Component, PropTypes } from 'react';
-import LocalStorageUtils from '../../utils/LocalStorageUtils';
 import ReactMarkdown from 'react-markdown';
+import { hashHistory } from 'react-router';
+import { connect } from 'react-redux';
 import Editor from './Editor';
 import CodeBlock from './CodeBlock';
 import { createPost } from '../../actions/posts';
-import { navigateTo } from '../../actions/navigator';
-import { hashHistory } from 'react-router';
 import Button from '../Button';
-
-import { connect } from 'react-redux';
+import LocalStorageUtils from '../../utils/LocalStorageUtils';
 
 class NewPost extends Component {
   constructor(props) {
@@ -54,13 +52,13 @@ class NewPost extends Component {
   };
 
   setRef(ref, item) {
-    if (item == 'title') {
+    if (item === 'title') {
       this.title = ref;
     }
-    else if (item == 'body') {
+    else if (item === 'body') {
       this.body = ref;
     }
-    else if (item == 'markdownbody') {
+    else if (item === 'markdownbody') {
       this.markdownbody = ref;
     }
   }
@@ -116,8 +114,9 @@ class NewPost extends Component {
   }
 }
 
-NewPost.contextTypes = {
-  router: React.PropTypes.object.isRequired
+const propTypes = {
+  dispatch: PropTypes.func.isRequired
 };
 
+NewPost.propTypes = propTypes;
 export default connect()(NewPost);
