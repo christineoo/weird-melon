@@ -11,4 +11,10 @@ const Root = ({ store }) => (
     </Provider>
 );
 
+const propTypes = {
+  store: PropTypes.object.isRequired
+};
+
+Root.propTypes = propTypes;
+
 export default Root;

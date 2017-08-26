@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
 const propTypes = {
-  dispatch: PropTypes.func.isRequired,
+  dispatch: PropTypes.func.isRequired
 };
 
 class Modal extends Component {

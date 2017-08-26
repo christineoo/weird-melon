@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
-import { fetchPosts } from '../../actions/posts';
 import { connect } from 'react-redux';
 import ReactMarkdown from 'react-markdown';
 import CodeBlock from './CodeBlock';
+import { fetchPosts } from '../../actions/posts';
 
 class View extends Component {
 
@@ -67,6 +67,13 @@ function mapStateToProps(state) {
     posts, path
   };
 }
+
+const propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  posts: PropTypes.object.isRequired
+};
+
+View.propTypes = propTypes;
 
 export default connect(mapStateToProps)(View);
 

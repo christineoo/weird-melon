@@ -1,16 +1,17 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import HeaderContainer from './containers/HeaderContainer';
 
-class AppContainer extends React.Component {
+const AppContainer = ({ children }) => (
+    <section>
+        <HeaderContainer />
+        {children}
+    </section>
+);
 
-  render() {
-    return (
-        <section>
-            <HeaderContainer />
-            {this.props.children}
-        </section>
-        );
-  }
-}
+const propTypes = {
+  children: PropTypes.object.isRequired
+};
+
+AppContainer.propTypes = propTypes;
 
 export default AppContainer;

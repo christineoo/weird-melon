@@ -1,10 +1,6 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Header from '../components/Header';
-
-const propTypes = {
-  isMobile: PropTypes.bool
-};
 
 class HeaderContainer extends Component {
   render() {
@@ -15,13 +11,12 @@ class HeaderContainer extends Component {
 }
 
 function mapStateToProps(state) {
-  const { auth, entities, environment, navigator } = state;
+  const { auth } = state;
 
   return {
     auth
   };
 }
 
-HeaderContainer.propTypes = propTypes;
 
 export default connect(mapStateToProps)(HeaderContainer);

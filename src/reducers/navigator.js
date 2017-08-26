@@ -1,4 +1,5 @@
 import { CHANGE_PATH } from '../actions/navigator';
+
 const initialRoute = { path: ['posts'] };
 // const initialRoute = { path: ['posts'], query: { q: 'technology' }};
 

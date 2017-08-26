@@ -1,10 +1,9 @@
 import { createStore, applyMiddleware, compose } from 'redux';
-import { persistState } from 'redux-devtools';
+import createLogger from 'redux-logger';
+import thunk from 'redux-thunk';
 import rootReducer from '../reducers';
 import DevTools from '../utils/devTools';
-import createLogger from 'redux-logger';
 // import thunkMiddleware from 'redux-thunk'
-import thunk from 'redux-thunk';
 
 const configureStore = (preloadedState) => {
   const store = createStore(

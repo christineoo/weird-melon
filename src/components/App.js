@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
 import { initNavigator } from '../actions/navigator';
 import { initAuth } from '../actions/auth';
-import { connect } from 'react-redux';
 import HeaderContainer from '../containers/HeaderContainer';
 
 class App extends React.Component {
@@ -34,5 +34,11 @@ function mapStateToProps(state) {
   };
 }
 
+const propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  children: PropTypes.object.isRequired
+};
+
+App.propTypes = propTypes;
 
 export default connect(mapStateToProps)(App);

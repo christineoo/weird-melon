@@ -31,12 +31,7 @@ class Post extends Component {
   }
 
   renderPost = () => {
-    const { dispatch } = this.props;
-
     const postEntries = [];
-    const codeBlock = Object.assign({}, {
-      CodeBlock
-    });
     const user = JSON.parse(LocalStorageUtils.get('user'));
 
     if (this.state.posts.items) {
@@ -66,5 +61,13 @@ function mapStateToProps(state) {
     posts
   };
 }
+
+const propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  posts: PropTypes.object.isRequired
+};
+
+Post.propTypes = propTypes;
+
 
 export default connect(mapStateToProps)(Post);

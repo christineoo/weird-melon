@@ -27,9 +27,11 @@ const Card = ({ user, post }) => {
     );
 };
 
-Card.propTypes = {
+const propTypes = {
   post: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired
 };
+
+Card.propTypes = propTypes;
 
 export default Card;
