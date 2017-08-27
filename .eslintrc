@@ -29,5 +29,6 @@
       "no-console": 0,
       "no-param-reassign": 0,
       "comma-dangle": ["error", "never"],
+      "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx"] }],
   },
  }

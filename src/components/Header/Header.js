@@ -6,7 +6,8 @@ import Popover from '../Modal/Popover';
 import '../Modal/Popover.scss';
 
 const propTypes = {
-  dispatch: PropTypes.func.isRequired
+  dispatch: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
 };
 
 class Header extends Component {
@@ -84,10 +85,6 @@ class Header extends Component {
         );
   }
 }
-
-Header.propTypes = {
-  auth: PropTypes.object.isRequired
-};
 
 Header.propTypes = propTypes;
 export default Header;
