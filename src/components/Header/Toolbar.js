@@ -35,7 +35,7 @@ class Toolbar extends Component {
         <div className="toolbar">
             <div className="grid">
                 <div className="toolbar-items">
-                    {this.renderCategory()}
+                    {/*{this.renderCategory()}*/}
                 </div>
             </div>
         </div>
